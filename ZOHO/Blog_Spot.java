@@ -43,13 +43,10 @@ public class Blog_Spot {
 		}
 		finally {
 			con.close();
-			
-			
 		}
 	}
 }
 			 
-	}
 		
 		
 		
