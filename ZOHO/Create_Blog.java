@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Create_Blog{
 	public void Create(Connection con) throws Exception{
 		PreparedStatement pstmt =con.prepareStatement("insert into BlogSpot (Name,UserId,UserPass,TopicName,Content) values(?,?,?,?,?)");
-		try (Scanner Scan = new Scanner(System.in)){
+		try {
+			Scanner Scan = new Scanner(System.in);
 			System.out.println("<<--Enter Your Name-->>");
 			String Name=Scan.nextLine();
 			System.out.println("<<--Set UserID-->");
@@ -22,11 +23,14 @@ public class Create_Blog{
 			pstmt.setString(4,TopicName);
 			pstmt.setString(5,Content);
 			pstmt.executeUpdate();
-			System.out.println("\n---------------------------Thanks for writting blog! Your blog added sucessfully--------------------------");
+			System.out.println("\n---------------------------Thanks for writting blog! Your blog added sucessfully--------------------------\n");
+			
 		}
-		catch (Exception e) {
-			System.out.println("-------------Input Error <<PleaseEnter Valid Inputs>>-------------");
+		catch(Exception e) {
+			System.out.println("                                <<Please Enter A Valid Inputs>>                    \n");
+			Create(con);
 		}
+		
 	}
 }
  

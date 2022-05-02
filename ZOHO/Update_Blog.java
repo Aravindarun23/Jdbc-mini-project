@@ -7,8 +7,10 @@ public class Update_Blog {
 		PreparedStatement pstmt =con.prepareStatement("UPDATE BlogSpot SET Content =(?) WHERE UserId = (?)");
 		Statement st=con.createStatement();		
 		ResultSet rs=st.executeQuery("select * from BlogSpot");
-		try (Scanner Scan = new Scanner(System.in)){
-			System.out.println("-----------------If You Want To Update Your Blog You Must Enter Id And Password----------------------\n");
+		
+		try {
+			Scanner Scan = new Scanner(System.in);
+			System.out.println("\n-----------------If You Want To Update Your Blog You Must Enter Id And Password----------------------\n");
 			System.out.println("<<--Enter Your Id-->>");
 			int UserId=Scan.nextInt();
 			System.out.println("<<--Enter Your Password-->>");
@@ -28,12 +30,18 @@ public class Update_Blog {
 				pstmt.setString(1,UpdateContent);
 				pstmt.setInt(2,UserId);
 				pstmt.executeUpdate();
-				System.out.println("---------------!! Your Blog Content Updated Sucessfully !!--------------------/n");
+				System.out.println("---------------!! Your Blog Content Updated Sucessfully !!--------------------\n");
 			}
+			else {
+				System.out.println("                                <<Please Enter A Valid Inputs>>                    \n");
+				Update(con);
+			}
+			
 		}
 		catch(Exception e) {
-			System.out.println("-----------------------Information Is Wrong Please Re Check Id Ans Password-------------------------");
+			System.out.println("______________Input Error_____________\n");
 		}
+			
 	}
-}
 	
+}
